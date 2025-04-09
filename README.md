@@ -1,4 +1,4 @@
-# Color Me Quilt
+# Color My Quilt
 
 The idea is to build a website that can upload a photo of a quilt, and the program will match the quilt colors with the Kona Solids quilt fabrics that are needed in the quilt.
 
