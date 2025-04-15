@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Color My Quilt</title>
+    {% block styles %}
+    <!-- Load Bootstrap-Flask CSS here -->
+    {{ bootstrap.load_css() }}
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Ribeye&display=swap" rel="stylesheet">
+
+    <!--    Favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename='assets/favicon.ico') }}"
+    />
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link
+      href="{{ url_for('static', filename='css/styles.css') }}"
+      rel="stylesheet"
+    />
+    {% endblock %}
+
+  </head>
+
+
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark gradient-custom">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Navbar brand -->
+        <a class="navbar-brand pacifico-regular" href="#">Color My Quilt</a>
+
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-mdb-collapse-init
+          data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i class="fas fa-bars text-light"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Left links -->
+          <ul class="navbar-nav me-auto d-flex flex-row mt-3 mt-lg-0">
+            <li class="nav-item text-center mx-2 mx-lg-1">
+              <a class="nav-link active" aria-current="page" href="#!">
+                <div>
+                  <i class="fas fa-home fa-lg mb-1"></i>
+                </div>
+                Home
+              </a>
+            </li>
+            <li class="nav-item text-center mx-2 mx-lg-1">
+              <a class="nav-link" href="#!">
+                Link
+              </a>
+            </li>
+            <li class="nav-item text-center mx-2 mx-lg-1">
+              <a class="nav-link disabled" aria-disabled="true" href="#!">
+                Disabled
+              </a>
+            </li>
+            <li class="nav-item dropdown text-center mx-2 mx-lg-1">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-dropdown-init
+                aria-expanded="false">
+                Dropdown
+              </a>
+            </li>
+          </ul>
+          <!-- Left links -->
+
+          <!-- Search form -->
+          <form class="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0">
+            <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
+            <button type="button" class="btn btn-outline-light" data-mdb-ripple-init data-mdb-ripple-color="dark">
+              Search
+            </button>
+          </form>
+        </div>
+        <!-- Collapsible wrapper -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->

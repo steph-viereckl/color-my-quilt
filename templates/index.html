@@ -1,0 +1,60 @@
+{% include "header.html" %}
+
+<div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+
+          <div class="m-4 h-100 d-flex align-items-center justify-content-center">
+              <form method="POST" action="/upload" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <input type="submit" value="Upload">
+                </form>
+          </div>
+
+          <div class="m-2 h-100 d-flex align-items-center justify-content-center">
+              <!-- Show Uploaded Picture -->
+              {% if filename %}
+                <!-- <img src="url_for('static/uploads', filename={{filename}})"/>-->
+                <img src="static/uploads/{{filename}}" style="width: 30rem"/>
+              {% endif %}
+          </div>
+
+            <!-- Color Swatch -->
+          <div class="m-2 h-100 d-flex align-items-center justify-content-center">
+
+             {% if hex_color %}
+              <div id="color-swatch" class="color-swatch" style="background-color: {{ hex_color }}"></div>
+              {% endif %}
+
+          </div>
+
+                      <!-- Color Swatch -->
+          <div class="m-2 h-100 d-flex align-items-center justify-content-center">
+
+             {% if hex_color %}
+              <div id="color-swatch2" class="color-swatch" style="background-color: {{ hex_color }}"></div>
+              {% endif %}
+
+          </div>
+
+
+<!--          <div id="hex-box" class="color" style="background-color: {{ hex_color }}" data-id="0" data-color="{{ hex_color }}" data-locked="false"></div>-->
+
+
+      </div>
+</div>
+
+<script>
+        function updateVariable() {
+            var newValue = document.getElementById("hex-box").value;
+            $.ajax({
+                url: '/update_variable',
+                type: 'POST',
+                data: { new_value: newValue },
+                success: function(response) {
+                    document.getElementById("variable").textContent = response.variable;
+                }
+            });
+        }
+    </script>
+
+{% include "footer.html" %}
