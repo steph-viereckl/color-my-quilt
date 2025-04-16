@@ -28,22 +28,15 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 })
 
-// When user clicks on image, get color
-document.addEventListener('click', function(event) {
-    const x = event.clientX;
-    const y = event.clientY;
+const uploaded_img = document.getElementById();
 
-    var windowWidth = window.innerWidth;
-    var windowHeight = window.innerHeight;
-    var windowOuterHeight = window.outerHeight;
-    var windowDiff = window.outerHeight - window.innerHeight
-    console.log("x: " + x + " y: " + y)
-    console.log("innerHeight: " + window.innerHeight + " outerHeight: " + window.outerHeight+ " windowDiff: " + windowDiff)
-//    console.log("window.devicePixelRatio: " + window.devicePixelRatio)
+// When user clicks on image, get color using Pythong pyautogui library
+// Update the "color-swatch" element accordingly
+document.addEventListener('click', function(event) {
+//    const x = event.clientX;
+//    const y = event.clientY;
+
     post_body = {
-        x: x,
-        y: y,
-        browser_bar_height: windowDiff,
         pixel_ratio: window.devicePixelRatio
     }
 
@@ -59,12 +52,55 @@ document.addEventListener('click', function(event) {
         if (data.error) {
             console.error("Error:", data.error)
         } else {
+            console.log("Color swatches: ", data.color_swatches)
+            console.log("Color swatches 1: ", data.color_swatches['color-swatch-1'])
 
-            const colorDisplay = document.getElementById('color-swatch');
-            colorDisplay.style.backgroundColor = data.new_hex_color
+//            TODO: Put this into a method so it is less verbose
+            const colorDisplay1 = document.getElementById('color-swatch-1');
+            colorDisplay1.style.backgroundColor = data.color_swatches['color-swatch-1']
+            colorDisplay1.style.borderColor = data.current_color == 1 ? "red" : "black"
+            colorDisplay1.style.borderWidth = data.current_color == 1 ? "medium" : "thin"
+            const colorText1 = document.getElementById('color-text-1');
+            colorText1.textContent = data.color_swatches['color-swatch-1']
 
-            const colorDisplay2 = document.getElementById('color-swatch2');
-            colorDisplay2.style.backgroundColor = data.mouse_hex_color
+            const colorDisplay2 = document.getElementById('color-swatch-2');
+            colorDisplay2.style.backgroundColor = data.color_swatches['color-swatch-2']
+            colorDisplay2.style.borderColor = data.current_color == 2 ? "red" : "black"
+            colorDisplay2.style.borderWidth = data.current_color == 2 ? "medium" : "thin"
+            const colorText2 = document.getElementById('color-text-2');
+            colorText2.textContent = data.color_swatches['color-swatch-2']
+
+            const colorDisplay3 = document.getElementById('color-swatch-3');
+            colorDisplay3.style.backgroundColor = data.color_swatches['color-swatch-3']
+            colorDisplay3.style.borderColor = data.current_color == 3 ? "red" : "black"
+            colorDisplay3.style.borderWidth = data.current_color == 3 ? "medium" : "thin"
+            const colorText3 = document.getElementById('color-text-3');
+            colorText3.textContent = data.color_swatches['color-swatch-3']
+
+            const colorDisplay4 = document.getElementById('color-swatch-4');
+            colorDisplay4.style.backgroundColor = data.color_swatches['color-swatch-4']
+            colorDisplay4.style.borderColor = data.current_color == 4 ? "red" : "black"
+            colorDisplay4.style.borderWidth = data.current_color == 4 ? "medium" : "thin"
+            const colorText4 = document.getElementById('color-text-4');
+            colorText4.textContent = data.color_swatches['color-swatch-4']
+
+            const colorDisplay5 = document.getElementById('color-swatch-5');
+            colorDisplay5.style.backgroundColor = data.color_swatches['color-swatch-5']
+            colorDisplay5.style.borderColor = data.current_color == 5 ? "red" : "black"
+            colorDisplay5.style.borderWidth = data.current_color == 5 ? "medium" : "thin"
+            const colorText5 = document.getElementById('color-text-5');
+            colorText5.textContent = data.color_swatches['color-swatch-5']
         }
     });
 });
+
+////check for Navigation Timing API support
+//if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+//    console.info( "This page is reloaded" );
+//    fetch('/refresh_page', {
+//        method: 'POST',
+//        headers: {
+//            'Content-Type': 'application/json'
+//        }
+//    })
+//}

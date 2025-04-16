@@ -18,27 +18,34 @@
               {% endif %}
           </div>
 
-            <!-- Color Swatch -->
-          <div class="m-2 h-100 d-flex align-items-center justify-content-center">
-
-             {% if hex_color %}
-              <div id="color-swatch" class="color-swatch" style="background-color: {{ hex_color }}"></div>
-              {% endif %}
-
-          </div>
-
-                      <!-- Color Swatch -->
-          <div class="m-2 h-100 d-flex align-items-center justify-content-center">
-
-             {% if hex_color %}
-              <div id="color-swatch2" class="color-swatch" style="background-color: {{ hex_color }}"></div>
-              {% endif %}
-
-          </div>
-
-
-<!--          <div id="hex-box" class="color" style="background-color: {{ hex_color }}" data-id="0" data-color="{{ hex_color }}" data-locked="false"></div>-->
-
+          {% if hex_color %}
+              <div class="m-2 h-100 d-flex align-items-center justify-content-center">
+                  <h4>Click the color on the image you would like to match</h4>
+              </div>
+          <!-- Color Swatches -->
+              <div class="m-2 h-100 d-flex align-items-center justify-content-center">
+                  <div>
+                      <div id="color-swatch-1" class="color-swatch" style="border-color: red"></div>
+                      <p id="color-text-1" class="hex-color-text text-center">#ffffff</p>
+                  </div>
+                  <div>
+                      <div id="color-swatch-2" class="color-swatch"></div>
+                      <p id="color-text-2" class="hex-color-text text-center">#ffffff</p>
+                  </div>
+                  <div>
+                      <div id="color-swatch-3" class="color-swatch"></div>
+                      <p id="color-text-3" class="hex-color-text text-center">#ffffff</p>
+                  </div>
+                  <div>
+                      <div id="color-swatch-4" class="color-swatch"></div>
+                      <p id="color-text-4" class="hex-color-text text-center">#ffffff</p>
+                  </div>
+                  <div>
+                      <div id="color-swatch-5" class="color-swatch"></div>
+                      <p id="color-text-5" class="hex-color-text text-center">#ffffff</p>
+                  </div>
+              </div>
+          {% endif %}
 
       </div>
 </div>

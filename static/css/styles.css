@@ -10835,4 +10835,9 @@ header.masthead .post-heading .meta a {
     width: 100px;
     height: 100px;
     border-style: solid;
+    background-color: #ffffff
+}
+
+.hex-color-text {
+    margin-top: 0
 }
