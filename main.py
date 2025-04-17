@@ -1,13 +1,13 @@
 # --------------- TODOS --------------------#
 
-# TODO scripts.js create method to set color swatch css/html
-# TODO if user clicks on a color swatch, update the "current color"
-# TODO Fix bug when user refreshes the page, the colors reset to white but the global variable is still set
 # TODO Add Kona color palette matching (i.e. show 5 related colors and let user click 1)
 # TODO Add google search to return kona fabrics in the wild?
 # TODO Return Kona Color Chart Group (i.e. Leaf is in group "G")
 # TODO Add ability to get "similar hex" colors
 # TODO Add ability to increase or decrease brightness of selected image?
+# TODO Improve button UI
+# TODO Add ability to toggle between hex and rgb
+
 # --------------- Imports --------------------#
 
 from pprint import pprint
@@ -50,8 +50,7 @@ def set_color_data(color):
     global color_to_update
 
     # Dynamically create key to set hex color
-    key = f"color-swatch-{color_to_update}"
-    color_swatches[key] = color
+    color_swatches[color_to_update] = color
 
     # If the color number is less than 5, increase by 1 so the next value in the set of 5 can be updated
     if color_to_update < 5:
@@ -61,7 +60,7 @@ def set_color_data(color):
         color_to_update = 1
 
     # Pass updated color swatches and the current color
-    return {'color_swatches': color_swatches, 'current_color': color_to_update}
+    return {'color_swatches': color_swatches, 'next_color': color_to_update}
 
 def reset_color_swatch():
     global color_swatches
@@ -69,11 +68,11 @@ def reset_color_swatch():
 
     color_to_update = 1
     color_swatches = color_swatches = {
-        "color-swatch-1": "#fffff",
-        "color-swatch-2": "#fffff",
-        "color-swatch-3": "#fffff",
-        "color-swatch-4": "#fffff",
-        "color-swatch-5": "#fffff",
+        1: "#fffff",
+        2: "#fffff",
+        3: "#fffff",
+        4: "#fffff",
+        5: "#fffff",
     }
 
 # ------------------- URL Methods -----------------#
@@ -145,6 +144,27 @@ def get_pixel_color():
         print(f"Color Swatches AFTER to pass to JSON: {color_swatches}")
 
         # Return json to javascript function which will find color-swatch element and update the background color
+        return jsonify(response_data)
+
+    except Exception as e:
+         print(f"Exception in get pixel color: {e}")
+         return jsonify({'error': str(e)})
+
+@app.route('/update_current_color', methods=['POST'])
+def update_current_color():
+    """Upon clicking color swatch html, update the 'selected' color
+
+    In order to keep track of the current color, update the global variable and pass back
+    new current color so that the html can be updated
+    """
+
+    try:
+        global color_to_update
+
+        data = request.get_json()
+        color_to_update = int(data["selected_swatch"])
+        response_data = {'color_swatches': color_swatches, 'next_color': color_to_update}
+
         return jsonify(response_data)
 
     except Exception as e:

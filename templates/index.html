@@ -7,43 +7,43 @@
               <form method="POST" action="/upload" enctype="multipart/form-data">
                 <input type="file" name="file">
                 <input type="submit" value="Upload">
-                </form>
+              </form>
           </div>
 
           <div class="m-2 h-100 d-flex align-items-center justify-content-center">
               <!-- Show Uploaded Picture -->
               {% if filename %}
                 <!-- <img src="url_for('static/uploads', filename={{filename}})"/>-->
-                <img src="static/uploads/{{filename}}" style="width: 30rem"/>
+                <img id="user-img" src="static/uploads/{{filename}}" style="width: 30rem"/>
               {% endif %}
           </div>
 
           {% if hex_color %}
               <div class="m-2 h-100 d-flex align-items-center justify-content-center">
-                  <h4>Click the color on the image you would like to match</h4>
+                  <h4>Click on the image to select a color</h4>
               </div>
           <!-- Color Swatches -->
               <div class="m-2 h-100 d-flex align-items-center justify-content-center">
-                  <div>
-                      <div id="color-swatch-1" class="color-swatch" style="border-color: red"></div>
-                      <p id="color-text-1" class="hex-color-text text-center">#ffffff</p>
-                  </div>
-                  <div>
-                      <div id="color-swatch-2" class="color-swatch"></div>
-                      <p id="color-text-2" class="hex-color-text text-center">#ffffff</p>
-                  </div>
-                  <div>
-                      <div id="color-swatch-3" class="color-swatch"></div>
-                      <p id="color-text-3" class="hex-color-text text-center">#ffffff</p>
-                  </div>
-                  <div>
-                      <div id="color-swatch-4" class="color-swatch"></div>
-                      <p id="color-text-4" class="hex-color-text text-center">#ffffff</p>
-                  </div>
-                  <div>
-                      <div id="color-swatch-5" class="color-swatch"></div>
-                      <p id="color-text-5" class="hex-color-text text-center">#ffffff</p>
-                  </div>
+                <div>
+                    <div id="color-swatch-1" class="color-swatch" data-num="1" style="border-color: red; border-width: medium"></div>
+                    <p id="color-text-1" class="hex-color-text text-center">#ffffff</p>
+                </div>
+                <div>
+                    <div id="color-swatch-2" class="color-swatch" data-num="2"></div>
+                    <p id="color-text-2" class="hex-color-text text-center">#ffffff</p>
+                </div>
+                <div>
+                    <div id="color-swatch-3" class="color-swatch" data-num="3"></div>
+                    <p id="color-text-3" class="hex-color-text text-center">#ffffff</p>
+                </div>
+                <div>
+                    <div id="color-swatch-4" class="color-swatch" data-num="4"></div>
+                    <p id="color-text-4" class="hex-color-text text-center">#ffffff</p>
+                </div>
+                <div>
+                    <div id="color-swatch-5" class="color-swatch" data-num="5"></div>
+                    <p id="color-text-5" class="hex-color-text text-center">#ffffff</p>
+                </div>
               </div>
           {% endif %}
 
