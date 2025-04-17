@@ -1,13 +1,3 @@
-# --------------- TODOS --------------------#
-
-# TODO Add Kona color palette matching (i.e. show 5 related colors and let user click 1)
-# TODO Add google search to return kona fabrics in the wild?
-# TODO Return Kona Color Chart Group (i.e. Leaf is in group "G")
-# TODO Add ability to get "similar hex" colors
-# TODO Add ability to increase or decrease brightness of selected image?
-# TODO Improve button UI
-# TODO Add ability to toggle between hex and rgb
-
 # --------------- Imports --------------------#
 
 from pprint import pprint
