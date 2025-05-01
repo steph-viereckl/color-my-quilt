@@ -1,21 +1,9 @@
-from pprint import pprint
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
-import os
-# pip install python-dotenv
-from dotenv import load_dotenv
-from datetime import date
-import calendar
-
 from PIL import Image
 from io import BytesIO
 import requests
-import json
 import pandas
-import csv
 
 KAUFMAN_BASE_URL = "https://www.robertkaufman.com/"
 KAUFMAN_ALL_PRODUCTS_URL = "https://www.robertkaufman.com/fabrics/kona_cotton/?cotton&solids&page=All#products"
@@ -45,8 +33,8 @@ class FabricScraper:
         colors = {}
 
         # Loop through the li
-        # for tile in fabric_tiles:
-        for tile in test_tiles:
+        for tile in fabric_tiles:
+        # for tile in test_tiles:
 
             tile_id = tile.get_attribute("id")
             tile_class= tile.get_attribute("class")
@@ -54,10 +42,10 @@ class FabricScraper:
 
             if tile_id.startswith("li_K001") and tile_class != "available_later_product":
 
-
                 img_src = tile.find_element(By.TAG_NAME, "img").get_attribute("src")
                 img_url = f"{img_src}"
                 fabric_name = tile.find_element(By.CLASS_NAME, "fabrics_yards_item_info").text.splitlines()[1]
+                print(f"Getting data for {fabric_name}....")
 
                 # Get the rgb color at (10, 10) coordinates (random coordinates
                 fabric_rgb = self.get_pixel_color(img_url, 10, 10)
@@ -107,4 +95,6 @@ class FabricScraper:
         except Exception as e:
             print(f"Error processing image: {e}")
             return None
+
+fabric_scraper = FabricScraper()
 
