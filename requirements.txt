@@ -9,6 +9,10 @@ Flask==2.3.2
 flask_sqlalchemy==3.1.1
 SQLAlchemy==2.0.25
 numpy==2.2.4
+colormath==3.0.0
+
 
 # pip install numpy
 # pip install Pillow
+# pip install selenium
+# pip install colormath

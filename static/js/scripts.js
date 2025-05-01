@@ -87,6 +87,29 @@ elements.forEach(element => {
     });
 });
 
+document.getElementById('get-fabric-btn').addEventListener('click', (e) => {
+
+    post_body = {'hello' : 'world'}
+
+    fetch('/get_fabric_match', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(post_body)
+    })
+    .then(response => response.json()) // response.json --> {1: "#fffff", 2: "#85829b", 3: "#433d4e" ....}
+    .then(data => {
+
+        console.log('Data: ', data)
+        const fabricImg = document.getElementById("fabric-img-1");
+        fabricImg.src = data.path
+        const fabricText = document.getElementById("fabric-text-1");
+        fabricText.textContent = data.name
+
+    });
+});
+
 /***************** Helper Functions *******************/
 
 /**
@@ -99,12 +122,13 @@ function updateColorSwatchesHtml(colorSwatches, next_color){
 
     for (const key in colorSwatches) {
 
-        hexColor = colorSwatches[key]
+        hexColor = colorSwatches[key]["hex"]
+        rgbColor = colorSwatches[key]["rgb"]
 
         // Update the Color Swatch with the correct Hex Color
         const colorSwatchId = 'color-swatch-' + key;
         const colorSwatch = document.getElementById(colorSwatchId);
-        colorSwatch.style.backgroundColor = hexColor
+        colorSwatch.style.backgroundColor = hexColor;
         colorSwatch.style.borderColor = next_color == key ? "red" : "black"
         colorSwatch.style.borderWidth = next_color == key ? "medium" : "thin"
 
@@ -193,3 +217,4 @@ function updateColorSwatchesHtml(colorSwatches, next_color){
 //        }
 //    })
 //}
+

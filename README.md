@@ -16,6 +16,8 @@ Will need to address colors showing up differently in different lights. Would be
 * Improve button UI
 * Add ability to toggle between hex and rgb
 * Add Stripe API for funsies
+* What if the file name of the RK fabric is not standard? Build web scraper to get url of tile using code instead of hardcoding?  
+* Don't show fabric tile if none are selected (currently is defualted)
 
 ## Buggies
 
