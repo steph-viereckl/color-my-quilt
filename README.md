@@ -8,6 +8,7 @@ Will need to address colors showing up differently in different lights. Would be
 
 ## TODO
 
+* How to store uploaded photo on client side instead of server? How do websites handle this?
 * Add Kona color palette matching (i.e. show 5 related colors and let user click 1)
 * Add google search to return kona fabrics in the wild?
 * Return Kona Color Chart Group (i.e. Leaf is in group "G")
@@ -17,7 +18,10 @@ Will need to address colors showing up differently in different lights. Would be
 * Add ability to toggle between hex and rgb
 * Add Stripe API for funsies
 * What if the file name of the RK fabric is not standard? Build web scraper to get url of tile using code instead of hardcoding?  
-* Don't show fabric tile if none are selected (currently is defualted)
+* Don't show fabric tile if none are selected (currently is defualted) 
+* Show "No fabric found" if no results are returned
+* Create a new page that is a list of the robert kaufman fabric pictures and rgb matches
+* Consider taking multiple pixels of fabric in scraper and averaging them to avoid the 1 weird pixel
 
 ## Buggies
 

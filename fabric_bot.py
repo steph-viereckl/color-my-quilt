@@ -15,7 +15,6 @@ class FabricScraper:
     def __init__(self):
 
         # ============ Get Driver ===============
-
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_experimental_option("detach", True)
 
@@ -28,13 +27,11 @@ class FabricScraper:
         fabric_list = self.driver.find_element(By.CLASS_NAME, "fabric-item-fabrics-list")
         # Get the li items
         fabric_tiles = fabric_list.find_elements(By.TAG_NAME, 'li')
-        test_tiles = [fabric_tiles[5], fabric_tiles[10], fabric_tiles[15]]
 
         colors = {}
 
         # Loop through the li
         for tile in fabric_tiles:
-        # for tile in test_tiles:
 
             tile_id = tile.get_attribute("id")
             tile_class= tile.get_attribute("class")

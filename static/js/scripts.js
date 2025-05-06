@@ -39,6 +39,8 @@ if (document.getElementById('user-img') != null) {
 
     uploaded_img.addEventListener('click', function(event) {
 
+        console.log('User image has been clicked!')
+
         post_body = {pixel_ratio: window.devicePixelRatio}
 
         fetch('/get_pixel_color', {
@@ -102,10 +104,55 @@ document.getElementById('get-fabric-btn').addEventListener('click', (e) => {
     .then(data => {
 
         console.log('Data: ', data)
-        const fabricImg = document.getElementById("fabric-img-1");
-        fabricImg.src = data.path
-        const fabricText = document.getElementById("fabric-text-1");
-        fabricText.textContent = data.name
+        fabricRow = document.getElementById("fabric-row");
+        // Clear existing list of fabrics (Is this the best way to clear html?)
+        fabricRow.innerHTML = ''
+
+        if (data.match_found == "true") {
+
+            for (var key in data.rows) {
+
+                fabric = data.rows[key]
+
+                const fabricDiv = document.createElement("div");
+                fabricDiv.classList.add("col")
+                fabricDiv.setAttribute("align", "center")
+//                fabricDiv.classList.add("d-flex")
+//                fabricDiv.classList.add("align-items-center")
+//                fabricDiv.classList.add("justify-content-center")
+                fabricRow.appendChild(fabricDiv)
+
+//                const imgDiv = document.createElement("div");
+//                fabricDiv.appendChild(imgDiv)
+
+                const fabricImg = document.createElement("img");
+                fabricImg.src = fabric["img_url"]
+                fabricImg.style = "width: 5rem"
+                fabricDiv.appendChild(fabricImg)
+
+//                const nameDiv = document.createElement("div");
+//                fabricDiv.appendChild(nameDiv)
+
+                const fabricName = document.createElement("p");
+                fabricName.innerText = fabric["name"];
+                fabricName.classList.add("m-1")
+                fabricDiv.appendChild(fabricName)
+            }
+            // Show the picture of the fabric image
+//            const fabricImg = document.getElementById("fabric-img-1");
+//            fabricImg.src = data.path
+//            // Show the fabric Text
+//            const fabricText = document.getElementById("fabric-text-1");
+//            fabricText.textContent = data.name
+        } else {
+
+            const noResultImg = document.getElementById("fabric-img-1");
+            noResultImg.src = "static/assets/img/no_results.png"
+            const noResultTxt = document.getElementById("fabric-text-1");
+            noResultTxt.textContent = "No Results :( Try Again"
+        }
+
+
 
     });
 });

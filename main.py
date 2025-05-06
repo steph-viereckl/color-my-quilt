@@ -18,7 +18,6 @@ from colormath.color_diff import delta_e_cie2000
 
 # ------------------- Constants and Initial Config -----------------#
 
-
 # TODO Clicking on Color isn't working :)))))
 
 # TODO How to let people upload photos but not store on our server?
@@ -32,15 +31,15 @@ app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 Bootstrap5(app)
 
+# Set initial values
 current_file = None
 hex_color = "#fcba03"
 color_to_update = 1 # Keeps track of which swatch box is outlined in red
 color_swatches = {}
 show_hex = False
 
+# ------- Get Kaufman Fabric from CSV (populated by web scraper) ----------- #
 # TODO need to think about how to organize so we always get the color file but don't always update it
-# Like have that run once a week to update the csv file and email results (pass or failure)
-# Get Robert Kaufman Colors (data sourced by webscraper)
 COLORS_FILE_PATH = 'static/assets/colors.csv'
 fabrics_data_frame = pandas.read_csv(COLORS_FILE_PATH, names=['name', 'code', 'img_url', 'red', 'green', 'blue'])
 
@@ -99,6 +98,9 @@ def find_color_match(red, green, blue):
     # Convert from RGB to Lab Color Space
     selected_lab_color = convert_color(selected_rgb, LabColor)
 
+    # matching_rows = {}
+    matching_rows = []
+
     # Loop over rows of Robert Kaufman fabric data and check if the user entered value matches any of the Fabric Colors
     for index, row in fabrics_data_frame.iterrows():
 
@@ -113,12 +115,18 @@ def find_color_match(red, green, blue):
         delta_e = delta_e_cie2000(selected_lab_color, fabric_lab_color);
         print(f"Color difference is: {delta_e}")
 
-        if delta_e < 20:
-            print(f"Color match for fabric {row["name"]}!")
-            return row
+        # If Delta e is less than 10, the two colors are similar at a glance
+        if delta_e < 10:
+            print(f"Color match for fabric {row["name"]} with delta of {delta_e}!")
+            # TODO Sort this so the best colors are first and the least are last
+            matching_rows.append(row)
 
-    print("No matches found")
-    return None
+    if matching_rows:
+        print(f"Matching Rows: {matching_rows}")
+        return matching_rows
+    else:
+        print("No matches found")
+        return None
 
 # ------------------- URL Methods -----------------#
 
@@ -225,29 +233,42 @@ def get_fabric_match():
     """
 
     try:
+
         global color_to_update
 
+        # Get the selected color information
         current_color = color_swatches[color_to_update]
 
-        matching_fabric_row = find_color_match(current_color["rgb"][0], current_color["rgb"][1], current_color["rgb"][2])
-        print(f"matching_fabric_row name: {matching_fabric_row["name"]}")
+        # TODO Show multiple matches, if applicable
+        matching_fabric_rows = find_color_match(current_color["rgb"][0], current_color["rgb"][1], current_color["rgb"][2])
 
-        # https://www.robertkaufman.com/fabrics/kona_cotton/?cotton&solids#products
-        # TODO: Need to test that we are passing the correct details
+        print(f"matching_fabric_rows: {type(matching_fabric_rows)}")
 
-        # Pass the user selected rbg value and see if there is a color match
-        file_path = matching_fabric_row["img_url"]
-        print(f"file_path: {file_path}")
+        if matching_fabric_rows is None:
+            return {'match_found': 'false'}
+        else:
 
-        # TODO: Need to add more colors to the color tiles... can I scrape color tiles and get pixel color?
-        # And/Or maybe this should be a page on the website to drive traffic
+            rows = []
 
-        response_data = {'path': file_path, 'name': matching_fabric_row["name"]}
+            # response_data = {'match-found': True}
+            for fabric in matching_fabric_rows:
 
-        return response_data
+                rows.append((fabric.to_dict()))
+                # test = fabric.to_dict()
+                # print(f"test: {test}")
+                # file_path = matching_fabric_row["img_url"]
+
+            response_data = {'match_found': 'true', 'rows': rows}
+            print(f"Response: {response_data}")
+            # response_data = {'match_found': 'true', 'rows': file_path, 'name': matching_fabric_row["name"]}
+            return response_data
+
+
     except Exception as e:
-         print(f"Exception in get pixel color: {e}")
+         print(f"Exception in get_fabric_match: {e}")
          return jsonify({'error': str(e)})
+
+# ------------------ Run Program ------------------- #
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

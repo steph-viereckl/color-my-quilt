@@ -20,29 +20,29 @@
 
           {% if hex_color %}
               <div class="m-2 h-100 d-flex align-items-center justify-content-center">
-                  <h4>Click on the image to select a color</h4>
+                  <h4 id="instructions">Click on the image to select a color</h4>
               </div>
           <!-- Color Swatches -->
               <div class="m-2 h-100 d-flex align-items-center justify-content-center">
                 <div>
                     <div id="color-swatch-1" class="color-swatch" data-num="1" style="border-color: red; border-width: medium"></div>
-                    <p id="color-text-1" class="hex-color-text text-center">#ffffff</p>
+                    <p id="color-text-1" class="hex-color-text text-center"></p>
                 </div>
                 <div>
                     <div id="color-swatch-2" class="color-swatch" data-num="2"></div>
-                    <p id="color-text-2" class="hex-color-text text-center">#ffffff</p>
+                    <p id="color-text-2" class="hex-color-text text-center"></p>
                 </div>
                 <div>
                     <div id="color-swatch-3" class="color-swatch" data-num="3"></div>
-                    <p id="color-text-3" class="hex-color-text text-center">#ffffff</p>
+                    <p id="color-text-3" class="hex-color-text text-center"></p>
                 </div>
                 <div>
                     <div id="color-swatch-4" class="color-swatch" data-num="4"></div>
-                    <p id="color-text-4" class="hex-color-text text-center">#ffffff</p>
+                    <p id="color-text-4" class="hex-color-text text-center"></p>
                 </div>
                 <div>
                     <div id="color-swatch-5" class="color-swatch" data-num="5"></div>
-                    <p id="color-text-5" class="hex-color-text text-center">#ffffff</p>
+                    <p id="color-text-5" class="hex-color-text text-center"></p>
                 </div>
               </div>
 
@@ -53,12 +53,44 @@
 
 
               <!-- Fabric Suggestions Swatches -->
-                <div class="m-2 h-100 d-flex align-items-center justify-content-center">
-                    <div>
-                        <img id="fabric-img-1" src="static/assets/img/color_tiles/K001-1853.jpg">
-                        <p id="fabric-text-1" class="hex-color-text text-center">PLACEHOLDER</p>
-                    </div>
+                <div id="fabric-list" class="m-2 h-100 d-flex align-items-center justify-content-center">
+<!--                    <div class="m-2 h-100 d-flex align-items-center justify-content-center">-->
+<!--                        <img id="fabric-img-1" src="static/assets/img/search.png" style="width: 5rem">-->
+<!--                    </div>-->
+<!--                        <p id="fabric-text-1" class="hex-color-text text-center"></p>-->
+<!--                    </div>-->
               </div>
+
+    <div class="container">
+        <div id="fabric-row" class="row">
+        </div>
+    </div>
+
+
+<!--<div id="" class="m-2 h-100 d-flex flex-row flex-wrap align-items-center justify-content-center">-->
+<!--    <div class="container">-->
+<!--        <div id="fabric-row" class="row">-->
+<!--             <div class="col">-->
+<!--      <img src="https://www.robertkaufman.com/assets/fabric/thumbs/K001-1849.jpg?v=1746121779" style="width: 5rem;"><p class="fabric-text">NACHO CHEESE</p>-->
+<!--    </div>-->
+<!--     <div class="col">-->
+<!--      <img src="https://www.robertkaufman.com/assets/fabric/thumbs/K001-851.jpg?v=1746121779" style="width: 5rem;"><p class="fabric-text">MAC AND CHEESE</p>-->
+<!--    </div>-->
+<!--     <div class="col">-->
+<!--      <img src="https://www.robertkaufman.com/assets/fabric/thumbs/K001-1320.jpg?v=1746121779" style="width: 5rem;"><p class="fabric-text">SAFFRON</p>-->
+<!--    </div>-->
+<!--     <div class="col">-->
+<!--      <img src="https://www.robertkaufman.com/assets/fabric/thumbs/K001-474.jpg?v=1746121779" style="width: 5rem;"><p class="fabric-text">GOLDFISH</p>-->
+<!--    </div>-->
+<!--     <div class="col">-->
+<!--      <img src="https://www.robertkaufman.com/assets/fabric/thumbs/K001-1479.jpg?v=1746121779" style="width: 5rem;"><p class="fabric-text">AMBER</p>-->
+<!--    </div>-->
+<!--     <div class="col">-->
+<!--      <img src="https://www.robertkaufman.com/assets/fabric/thumbs/K001-1482.jpg?v=1746121779" style="width: 5rem;"><p class="fabric-text">SCHOOL BUS</p>-->
+<!--      </div>-->
+<!--        </div>-->
+
+<!-- </div>-->
           {% endif %}
 
       </div>

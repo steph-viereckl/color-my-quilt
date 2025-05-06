@@ -10843,3 +10843,7 @@ header.masthead .post-heading .meta a {
 .hex-color-text {
     margin-top: 0
 }
+
+.fabric-text {
+    word-wrap: break-word;
+}
